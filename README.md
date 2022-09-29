@@ -3,9 +3,11 @@
 [Abstract](#abstract)<br>
 [Keywords](#keywords)<br>
 [Tools Used](#tools-used)<br>
-[SKY 130nm Process Design Kit (PDK)](#skywater-open-source-process-design-kit)
+A. [eSim](#a-esim)
+B. [Makerchip](#b-makerchip)
+[Skywater Open Source Process Design Kit](#skywater-open-source-process-design-kit)
 1. [Introduction](#1-introduction)<br>
-2. [8T SRAM Cell For In-Memory DAC](#2-8t-sram-cell-for-in-memory-dac)<br>
+2. [Proposed Circuit Design](#2-proposed-circuit-design)<br>
 3. [Simulation Results](#3-simulation-results)<br>
    - 3.1. [Netlist](#31-netlist)<br>
    - 3.2. [Simulated Waveforms](#32-simulated-waveforms)<br>
@@ -18,9 +20,14 @@ The present-day dominant von-Neumann based computing architecture involves separ
 _Artificial Intelligence (AI), bottleneck, DAC, SRAM, von-Neumann_
 <br>[🠉 Back to Top](#contents)
 ## Tools Used
+### A. eSim 
 [eSim](https://esim.fossee.in/home) (previously known as Oscad / FreeEDA) is a free/libre and open source EDA tool for circuit design, simulation, analysis and PCB design. It is an integrated tool built using free/libre and open source software such as [KiCad](http://www.kicad-pcb.org/), [Ngspice](http://ngspice.sourceforge.net/), [Verilator](https://www.veripool.org/verilator/), [makerchip-app](https://pypi.org/project/makerchip-app/), [sandpiper-saas](https://pypi.org/project/sandpiper-saas/) and [GHDL](http://ghdl.free.fr/). eSim is released under GPL.
 ![eSim](https://user-images.githubusercontent.com/100511409/157074547-e9c855cf-ddaa-41e1-a44f-8071950f172b.jpg)<br>
 _Fig. 1. FOSSEE eSim software._<br>
+### B. Makerchip
+[Makerchip](https://makerchip.com/) is tool designed by [Redwood EDA](https://www.redwoodeda.com/) for Open-source SystemVerilog/TL-Verilog development in your browser. Makerchip provides free and instant access to the latest tools directly from your browser and from your desktop. This includes open-source tools and proprietary ones. 
+![Makerchip_Software](https://user-images.githubusercontent.com/100511409/193117567-784976ba-b100-4ad1-ad1f-3ad6f701bf04.png)
+_Fig. 2. Makerchip software for design verification_<br>
 <br>[🠉 Back to Top](#contents)
 ## Skywater Open Source Process Design Kit
 [A process design kit (PDK)](https://en.wikipedia.org/wiki/Process_design_kit) is a set of files used within the semiconductor industry to model a fabrication process for the design tools used to design an integrated circuit. The PDK is created by the foundry defining a certain technology variation for their processes. It is then passed to their customers to use in the design process.<br>
@@ -33,10 +40,8 @@ The latest SkyWater SKY130 PDK design resources can be downloaded from the follo
 ## 1. Introduction
 ost of the recent day processors works on von-Neumann architecture <sup>[1](#references)</sup> where the program and data units are separately spatially, i.e., stored at different locations on the chip. This significantly increases delay and energy consumption due to frequent to and fro data transfer between these two cores, especially in case of data intensive applications such as in AI/ML. By facilitating computations within memory, both energy efficiency and throughput are expected to improve manifolds <sup>[2](#references)</sup>. AI/ML operations are often preferred in analog domain to avoid complexity but digital world offers many advantages over analog world, such as ease of storage, processing etc. So, in this work, we will present an in-memory DAC inside 8T SRAM cell for AI acceleration. 
 <br>[🠉 Back to Top](#contents)
-## 2. 8T SRAM Cell For In-Memory DAC
-An 8T-SRAM, without modifying its basic circuit structure, can behave as a digital to analog converter (DAC), without affecting the bits stored in the SRAM cell. Consider an array of 4 cells connected as shown in Fig. 2. Under normal memory operations, the source terminal of M1 (and also M3, M5, M29) is grounded but for DAC operation SLs (source lines) of same row are all connected to _vin_. Thus, the current flowing through each column is proportional to their common _vin_, and also to the conductance of transistors in each of these columns respectively as shown in Fig. 2. e.g., when logic ‘1’ is stored in memory cell of first column, conductance of M1 is very high but when logic ‘0’ is stored in memory cell, the conductance of M1 is almost negligible, i.e., it does not conducts at all. Another parameter on which current will depend are (W/L) ratio of mosfet M1 and M2 present in first column. It is well known that current through enhancement mosfet is directly proportional to its (W/L) ratio. Hence, properly sizing the (W/L) ratios of mosfet M1 and M2 in each column we can obtained our proposed digital to analog converter.<br>
-For our proposed structure of 8T-SRAM array cells, current _I_ will be sum of currents through RBL of each cell. Now consider that the ratio of (W/L) of mosfet M1 and M2 used in column 1 through 4 is 8: 4: 2: 1 as shown in Fig. 2 (we will keep the sizes of mosfet same in each column). Hence, their conductance will be in the same ratio, since conductance will be directly proportional to (W/L) ratio. This will generate output current _I_, which will be proportional to the analog equivalent of digital bits stored inside SRAM. _I_ = _K_(2<sup>3</sup>b<sub>3</sub>+2<sup>2</sup>b<sub>2</sub>+2<sup>1</sup>b<sub>1</sub>+2<sup>0</sup>b<sub>0</sub>), where _K_ is some constant.
-![SchematicCopy](https://user-images.githubusercontent.com/100511409/157194852-9e208f08-fd22-4a21-878f-3921f349becb.jpg)<br>
+## 2. Proposed Circuit Design
+
 _Fig. 2. Schematic of in-memory DAC. The designing of 6TSRAM in makerchip is discussed in upcoming sections._<br>
 <br>[🠉 Back to Top](#contents)
 ## 3. Simulation Results
