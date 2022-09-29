@@ -208,9 +208,14 @@ plot i(v_u12)
 ```
 
 ### 3.2. Simulated Waveforms
-Fig. 8 below demonstrates the simulated output which is similar to the staircase waveform typical to the digital to analog converter. Thus, the simulated results establishes the successful simulation of the in-memory SRAM based DAC.
+Fig. 8 below demonstrates the expected output generated via [LTSpice](https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html) which is similar to the staircase waveform typical to the digital to analog converter.
+Fig. 9 below demonstrates the simulated output of eSim. Thus, the simulated results establishes the successful simulation of the in-memory SRAM based DAC.
+
+![Fig2a](https://user-images.githubusercontent.com/100511409/193140889-4aaf0066-5b2f-4954-9aba-75aff7a6eace.png)<br>
+_Fig. 8. . Plot showing (a) digital 4-bit data {b3b2b1b0} stored in SRAM cell, (b) output current (I in 𝜇𝐴) (obtained from LTSpice) proportional to the 
+analog equivalent of weight w stored within SRAM._<br><br>
 ![Final_Simulated_Output](https://user-images.githubusercontent.com/100511409/193124309-ae743365-519b-4f69-84b4-23610a8c0350.png)<br>
-_Fig. 8. Simulated output showing (a) inputs signal to the circuit, and (b) staircase output current which is typical to the digital to analog convertor (DAC)._<br>
+_Fig. 9. Simulated output showing (a) inputs signal to the circuit, and (b) staircase output current which is typical to the digital to analog convertor (DAC)._<br>
 <br>[🠉 Back to Top](#contents)
 
 ## Acknowledgement
