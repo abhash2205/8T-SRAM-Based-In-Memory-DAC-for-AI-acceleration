@@ -50,23 +50,17 @@ ost of the recent day processors works on von-Neumann architecture <sup>[1](#ref
 
 ## 2. Proposed Circuit Design
 An 8T-SRAM, without modifying its basic circuit structure, can behave as a digital to analog converter (DAC), without affecting the bits stored in the SRAM cell. Consider an array of 4 cells connected as shown in Fig. 3. Under normal memory operations, the source terminal of SC1 (and also SC3, SC5, SC7) is grounded but for DAC operation SLs (source lines) of same row are all connected to _vin_. Thus, the current flowing through each column is proportional to their common _vin_, and also to the conductance of transistors in each of these columns respectively <sup>[3](#references)</sup>, i.e.,
-```math
-I\propG...(1)
-```
+$$I\propG...(1)$$
+
 When logic ‘1’ is stored in memory cell, conductance of M1 is significant, but when logic ‘0’ is stored in memory cell, the conductance of M1 is almost zero. Further, the conductance (𝐺) depends on directly on (W/L) ratio of mosfet, i.e.,
-```math
-G\prop(W/L)...(2)
-```
+$$G\prop(W/L)...(2)$$
+
 Hence, properly sizing the (W/L) ratios of mosfets in each column we can obtained our proposed DAC as discussed below.<br>
 Now consider that the ratio of (W/L) of mosfets used in column 1 through 4 is 8: 4: 2: 1 as shown in Fig. 3, i.e.,
-```math
-(W/L)_{SC1,SC2}=2^3\timesk, (W/L)_{SC3,SC4}=2^2\timesk, (W/L)_{SC5,SC6}=2^1\timesk, (W/L)_{SC7,SC8}=2^0\timesk...(3)
-```
+$$(W/L)_{SC1,SC2}=2^3\timesk, (W/L)_{SC3,SC4}=2^2\timesk, (W/L)_{SC5,SC6}=2^1\timesk, (W/L)_{SC7,SC8}=2^0\timesk...(3)$$
 where $k$ is any constant. Hence, equation (1), (2), and (3); the total current $I$ can be given as:
-```math
-I\prop(2<sup>3</sup>b<sub>3</sub>+2<sup>2</sup>b<sub>2</sub>+2<sup>1</sup>b<sub>1</sub>+2<sup>0</sup>b<sub>0</sub>)=w
-```
-where, $w=(2<sup>3</sup>b<sub>3</sub>+2<sup>2</sup>b<sub>2</sub>+2<sup>1</sup>b<sub>1</sub>+2<sup>0</sup>b<sub>0</sub>)$ is analog equivalent of digital weight ${b_3,b_2,b_1,b_0}$ stored in SRAM cell.
+$$I\prop(2<sup>3</sup>b<sub>3</sub>+2<sup>2</sup>b<sub>2</sub>+2<sup>1</sup>b<sub>1</sub>+2<sup>0</sup>b<sub>0</sub>)=w$$
+where, ${w=(2<sup>3</sup>b<sub>3</sub>+2<sup>2</sup>b<sub>2</sub>+2<sup>1</sup>b<sub>1</sub>+2<sup>0</sup>b<sub>0</sub>)}$ is analog equivalent of digital weight ${\{b_3,b_2,b_1,b_0\}}$ stored in SRAM cell.
 ![InMemDAC_Schematic - Copy](https://user-images.githubusercontent.com/100511409/193133083-0f52623a-597d-4f1d-85cc-f7767a2e8262.jpg)<br>
 _Fig. 3. Schematic of in-memory DAC designed on KiCad integrated with eSim._<br>
 <br>[🠉 Back to Top](#contents)
