@@ -49,8 +49,26 @@ ost of the recent day processors works on von-Neumann architecture <sup>[1](#ref
 <br>[🠉 Back to Top](#contents)
 
 ## 2. Proposed Circuit Design
-
-_Fig. 3. Schematic of in-memory DAC. The designing of 6TSRAM in makerchip is discussed in upcoming sections._<br>
+An 8T-SRAM, without modifying its basic circuit structure, can behave as a digital to analog converter (DAC), without affecting the bits stored in the SRAM cell. Consider an array of 4 cells connected as shown in Fig. 3. Under normal memory operations, the source terminal of SC1 (and also SC3, SC5, SC7) is grounded but for DAC operation SLs (source lines) of same row are all connected to _vin_. Thus, the current flowing through each column is proportional to their common _vin_, and also to the conductance of transistors in each of these columns respectively <sup>[3](#references)</sup>, i.e.,
+```math
+I\propG...(1)
+```
+When logic ‘1’ is stored in memory cell, conductance of M1 is significant, but when logic ‘0’ is stored in memory cell, the conductance of M1 is almost zero. Further, the conductance (𝐺) depends on directly on (W/L) ratio of mosfet, i.e.,
+```math
+G\prop(W/L)...(2)
+```
+Hence, properly sizing the (W/L) ratios of mosfets in each column we can obtained our proposed DAC as discussed below.<br>
+Now consider that the ratio of (W/L) of mosfets used in column 1 through 4 is 8: 4: 2: 1 as shown in Fig. 3, i.e.,
+```math
+(W/L)_{SC1,SC2}=2^3\timesk, (W/L)_{SC3,SC4}=2^2\timesk, (W/L)_{SC5,SC6}=2^1\timesk, (W/L)_{SC7,SC8}=2^0\timesk...(3)
+```
+where $k$ is any constant. Hence, equation (1), (2), and (3); the total current $I$ can be given as:
+```math
+I\prop(2<sup>3</sup>b<sub>3</sub>+2<sup>2</sup>b<sub>2</sub>+2<sup>1</sup>b<sub>1</sub>+2<sup>0</sup>b<sub>0</sub>)=w
+```
+where, $w=(2<sup>3</sup>b<sub>3</sub>+2<sup>2</sup>b<sub>2</sub>+2<sup>1</sup>b<sub>1</sub>+2<sup>0</sup>b<sub>0</sub>)$ is analog equivalent of digital weight ${b_3,b_2,b_1,b_0}$ stored in SRAM cell.
+![InMemDAC_Schematic - Copy](https://user-images.githubusercontent.com/100511409/193133083-0f52623a-597d-4f1d-85cc-f7767a2e8262.jpg)<br>
+_Fig. 3. Schematic of in-memory DAC designed on KiCad integrated with eSim._<br>
 <br>[🠉 Back to Top](#contents)
 
 ## 3. Simulation Results
@@ -73,17 +91,114 @@ _Fig. 5. Logic verification of 6T SRAM cell in makerchip._<br><br>
 
 Next, the user defined digital library of the 6T SRAM cell along with its symbol were created by clicking on __Run Verilog to NgSpice Converter__ in the ngveri tab which combines the features of NgSpice and Verilator to support mixed-mode simulation as shown below in Fig. 6. After running __Verilog to NgSpice Converter__, the verilog models can be seen to be added in KiCad library. The same 6T SRAM model were then imported in KiCad schematic editor (see Fig. 7(a) below) and then rest of the circuit were designed as shown in Fig. 3 using skywater 130nm PDK (see Fig. 7(b)). The ratio of (W/L) of transistors corresponding to columns storing bits- b3, b2, b1, b0 respectively, were kept in the ratio 8:4:2:1 as discussed earlier. 
 ![Ngveri_Tab_esim - Copy](https://user-images.githubusercontent.com/100511409/193122402-e8f0ad86-6dad-4a99-a479-e642f9d88443.png)<br>
-_Fig. 6.(a) Verilog to NgSpice Converter. (b) 6T SRAM model added to KiCad library._
+_Fig. 6.(a) Verilog to NgSpice Converter. (b) 6T SRAM model added to KiCad library._<br><br>
 ![KiCad](https://user-images.githubusercontent.com/100511409/193123880-3cb4e9ac-0129-444e-b2cd-32381e06b0a7.png)<br>
-_Fig. 7. (a) Adding 6T SRAM model, (b) skywater 130nm pdk based mosfet to the KiCad schematic._<br>
+_Fig. 7. (a) Adding 6T SRAM model, (b) skywater 130nm pdk based mosfet to the KiCad schematic._<br><br>
+
 ### 3.1. Netlist
 ```
+* /home/abhash2205/esim-workspace/inmemdac/inmemdac.cir
+
+.include "/usr/share/local/sky130_fd_pr/models/sky130_fd_pr__model__r+c.model.spice"
+.include "/usr/share/local/sky130_fd_pr/models/sky130_fd_pr__model__pnp.model.spice"
+.lib "/usr/share/local/sky130_fd_pr/models/sky130.lib.spice" tt
+.include "/usr/share/local/sky130_fd_pr/models/sky130_fd_pr__model__linear.model.spice"
+.include "/usr/share/local/sky130_fd_pr/models/sky130_fd_pr__model__diode_pd2nw_11v0.model.spice"
+.include "/usr/share/local/sky130_fd_pr/models/sky130_fd_pr__model__diode_pw2nd_11v0.model.spice"
+.include "/usr/share/local/sky130_fd_pr/models/sky130_fd_pr__model__inductors.model.spice"
+* u4  net-_u13-pad1_ b3 net-_u2-pad2_ net-_u2-pad1_ adc_bridge_2
+* u3  net-_u2-pad3_ net-_sc1-pad2_ dac_bridge_1
+v4  b3 gnd pulse(0 1.8 8 0.01 0.01 8 16)
+xsc2 net-_sc2-pad1_ net-_sc2-pad2_ net-_sc1-pad1_ gnd sky130_fd_pr__nfet_01v8_lvt W=8
+xsc1 net-_sc1-pad1_ net-_sc1-pad2_ net-_sc1-pad3_ gnd sky130_fd_pr__nfet_01v8_lvt W=8
+v3 net-_sc1-pad3_ gnd  dc 1
+v2 net-_sc2-pad2_ gnd  dc 1.8
+* u8  net-_u13-pad1_ b2 net-_u6-pad2_ net-_u6-pad1_ adc_bridge_2
+* u7  net-_u6-pad3_ net-_sc3-pad2_ dac_bridge_1
+v5  b2 gnd pulse(0 1.8 4 0.01 0.01 4 8)
+xsc4 net-_sc2-pad1_ net-_sc2-pad2_ net-_sc3-pad1_ gnd sky130_fd_pr__nfet_01v8_lvt W=4
+xsc3 net-_sc3-pad1_ net-_sc3-pad2_ net-_sc1-pad3_ gnd sky130_fd_pr__nfet_01v8_lvt W=4
+* u13  net-_u13-pad1_ b1 net-_u10-pad2_ net-_u10-pad1_ adc_bridge_2
+* u11  net-_u10-pad3_ net-_sc5-pad2_ dac_bridge_1
+v6  b1 gnd pulse(0 1.8 2 0.01 0.01 2 4)
+xsc6 net-_sc2-pad1_ net-_sc2-pad2_ net-_sc5-pad1_ gnd sky130_fd_pr__nfet_01v8_lvt W=2
+xsc5 net-_sc5-pad1_ net-_sc5-pad2_ net-_sc1-pad3_ gnd sky130_fd_pr__nfet_01v8_lvt W=2
+* u16  net-_u13-pad1_ b0 net-_u16-pad3_ net-_u16-pad4_ adc_bridge_2
+* u15  net-_u15-pad1_ net-_sc7-pad2_ dac_bridge_1
+v7  b0 gnd pulse(0 1.8 1 0.01 0.01 1 2)
+xsc8 net-_sc2-pad1_ net-_sc2-pad2_ net-_sc7-pad1_ gnd sky130_fd_pr__nfet_01v8_lvt W=1
+xsc7 net-_sc7-pad1_ net-_sc7-pad2_ net-_sc1-pad3_ gnd sky130_fd_pr__nfet_01v8_lvt W=1
+v1 net-_u13-pad1_ gnd  dc 1.8
+* u5  b3 plot_v1
+* u9  b2 plot_v1
+* u14  b1 plot_v1
+* u17  b0 plot_v1
+* u12  net-_sc2-pad1_ gnd plot_i2
+* u1  ? ? ? abhash_6tsram
+* u18  net-_u16-pad4_ net-_u16-pad3_ net-_u15-pad1_ abhash_6tsram
+* u10  net-_u10-pad1_ net-_u10-pad2_ net-_u10-pad3_ abhash_6tsram
+* u6  net-_u6-pad1_ net-_u6-pad2_ net-_u6-pad3_ abhash_6tsram
+* u2  net-_u2-pad1_ net-_u2-pad2_ net-_u2-pad3_ abhash_6tsram
+* s c m o d e
+a1 [net-_u13-pad1_ b3 ] [net-_u2-pad2_ net-_u2-pad1_ ] u4
+a2 [net-_u2-pad3_ ] [net-_sc1-pad2_ ] u3
+a3 [net-_u13-pad1_ b2 ] [net-_u6-pad2_ net-_u6-pad1_ ] u8
+a4 [net-_u6-pad3_ ] [net-_sc3-pad2_ ] u7
+a5 [net-_u13-pad1_ b1 ] [net-_u10-pad2_ net-_u10-pad1_ ] u13
+a6 [net-_u10-pad3_ ] [net-_sc5-pad2_ ] u11
+a7 [net-_u13-pad1_ b0 ] [net-_u16-pad3_ net-_u16-pad4_ ] u16
+a8 [net-_u15-pad1_ ] [net-_sc7-pad2_ ] u15
+v_u12 net-_sc2-pad1_ gnd 0
+a9 [? ] [? ] [? ] u1
+a10 [net-_u16-pad4_ ] [net-_u16-pad3_ ] [net-_u15-pad1_ ] u18
+a11 [net-_u10-pad1_ ] [net-_u10-pad2_ ] [net-_u10-pad3_ ] u10
+a12 [net-_u6-pad1_ ] [net-_u6-pad2_ ] [net-_u6-pad3_ ] u6
+a13 [net-_u2-pad1_ ] [net-_u2-pad2_ ] [net-_u2-pad3_ ] u2
+* Schematic Name:                             adc_bridge_2, NgSpice Name: adc_bridge
+.model u4 adc_bridge(in_low=0 in_high=1.8 rise_delay=1.0e-9 fall_delay=1.0e-9 ) 
+* Schematic Name:                             dac_bridge_1, NgSpice Name: dac_bridge
+.model u3 dac_bridge(out_low=0 out_high=1.8 out_undef=0.5 input_load=1.0e-12 t_rise=1.0e-9 t_fall=1.0e-9 ) 
+* Schematic Name:                             adc_bridge_2, NgSpice Name: adc_bridge
+.model u8 adc_bridge(in_low=0 in_high=1.8 rise_delay=1.0e-9 fall_delay=1.0e-9 ) 
+* Schematic Name:                             dac_bridge_1, NgSpice Name: dac_bridge
+.model u7 dac_bridge(out_low=0 out_high=1.8 out_undef=0.5 input_load=1.0e-12 t_rise=1.0e-9 t_fall=1.0e-9 ) 
+* Schematic Name:                             adc_bridge_2, NgSpice Name: adc_bridge
+.model u13 adc_bridge(in_low=0 in_high=1.8 rise_delay=1.0e-9 fall_delay=1.0e-9 ) 
+* Schematic Name:                             dac_bridge_1, NgSpice Name: dac_bridge
+.model u11 dac_bridge(out_low=0 out_high=1.8 out_undef=0.5 input_load=1.0e-12 t_rise=1.0e-9 t_fall=1.0e-9 ) 
+* Schematic Name:                             adc_bridge_2, NgSpice Name: adc_bridge
+.model u16 adc_bridge(in_low=0 in_high=1.8 rise_delay=1.0e-9 fall_delay=1.0e-9 ) 
+* Schematic Name:                             dac_bridge_1, NgSpice Name: dac_bridge
+.model u15 dac_bridge(out_low=0 out_high=1.8 out_undef=0.5 input_load=1.0e-12 t_rise=1.0e-9 t_fall=1.0e-9 ) 
+* Schematic Name:                             abhash_6tsram, NgSpice Name: abhash_6tsram
+.model u1 abhash_6tsram(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 instance_id=1 ) 
+* Schematic Name:                             abhash_6tsram, NgSpice Name: abhash_6tsram
+.model u18 abhash_6tsram(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 instance_id=1 ) 
+* Schematic Name:                             abhash_6tsram, NgSpice Name: abhash_6tsram
+.model u10 abhash_6tsram(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 instance_id=1 ) 
+* Schematic Name:                             abhash_6tsram, NgSpice Name: abhash_6tsram
+.model u6 abhash_6tsram(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 instance_id=1 ) 
+* Schematic Name:                             abhash_6tsram, NgSpice Name: abhash_6tsram
+.model u2 abhash_6tsram(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 instance_id=1 ) 
+.tran 0.01e-00 16e-00 0e-00
+
+* Control Statements 
+.control
+run
+print allv > plot_data_v.txt
+print alli > plot_data_i.txt
+plot v(b3) v(b2)+6 v(b1)+12 v(b0)+18
+plot i(v_u12)
+.endc
+.end
 ```
+
 ### 3.2. Simulated Waveforms
 Fig. 8 below demonstrates the simulated output which is similar to the staircase waveform typical to the digital to analog converter. Thus, the simulated results establishes the successful simulation of the in-memory SRAM based DAC.
 ![Final_Simulated_Output](https://user-images.githubusercontent.com/100511409/193124309-ae743365-519b-4f69-84b4-23610a8c0350.png)<br>
 _Fig. 8. Simulated output showing (a) inputs signal to the circuit, and (b) staircase output current which is typical to the digital to analog convertor (DAC)._<br>
 <br>[🠉 Back to Top](#contents)
+
 ## Acknowledgement
 [Mixed Signal SoC design Marathon using eSim & SKY130](https://hackathon.fossee.in/esim/) conducted by: <br>
 [Indian Institute of Technology Bombay](https://www.iitb.ac.in/); <br>
@@ -96,8 +211,9 @@ Special Thanks to:<br>
 Kunal Ghosh, Co-founder, VSD Corp. Pvt. Ltd.; <br>
 Sumanto Kar, IIT Bombay
 <br>[🠉 Back to Top](#contents)
+
 ## References
 [1] J. Von Neumann, The computer and the brain. Yale University Press, 2012.<br>
-[2] S. Jeloka, N. B. Akesh, D. Sylvester, and D. Blaauw, “A 28nm configurable memory using push-rule 6T bit cell enabling logic-in-memory”, IEEE J. Solid-State Circuits, vol. 51, no. 4. Pp. 1009-1021, Apr. 2016.
+[2] S. Jeloka, N. B. Akesh, D. Sylvester, and D. Blaauw, “A 28nm configurable memory using push-rule 6T bit cell enabling logic-in-memory”, IEEE J. Solid-State Circuits, vol. 51, no. 4. Pp. 1009-1021, Apr. 2016.<br>
 [3] A. Jaiswal, I. Chakraborty, A. Agrawal and K. Roy, "8T SRAM Cell as a Multibit Dot-Product Engine for Beyond Von Neumann Computing," in IEEE Transactions on Very Large Scale Integration (VLSI) Systems, vol. 27, no. 11, pp. 2556-2567, Nov. 2019
 <br>[🠉 Back to Top](#contents)
