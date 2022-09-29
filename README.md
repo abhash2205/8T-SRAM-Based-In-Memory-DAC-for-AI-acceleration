@@ -1,4 +1,4 @@
-# In-Memory-DAC-Operations-Inside-8T-SRAM-Cells
+# SRAM Based In Memory DAC for AI acceleration
 ## Contents
 [Abstract](#abstract)<br>
 [Keywords](#keywords)<br>
