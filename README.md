@@ -3,7 +3,7 @@
 [Abstract](#abstract)<br>
 [Keywords](#keywords)<br>
 [Tools Used](#tools-used)<br>
-[SKY 130nm Process Design Kit (PDK)](#Skywater-Open-Source-Process-Design-Kit-(PDK))
+[SKY 130nm Process Design Kit (PDK)](#skywater-open-source-process-design-kit)
 1. [Introduction](#1-introduction)<br>
 2. [8T SRAM Cell For In-Memory DAC](#2-8t-sram-cell-for-in-memory-dac)<br>
 3. [Simulation Results](#3-simulation-results)<br>
@@ -22,7 +22,8 @@ _Artificial Intelligence (AI), bottleneck, DAC, SRAM, von-Neumann_
 ![eSim](https://user-images.githubusercontent.com/100511409/157074547-e9c855cf-ddaa-41e1-a44f-8071950f172b.jpg)<br>
 _Fig. 1. FOSSEE eSim software._<br>
 <br>[🠉 Back to Top](#contents)
-## Skywater Open Source Process Design Kit (PDK)
+## Skywater Open Source Process Design Kit
+[A process design kit (PDK)](https://en.wikipedia.org/wiki/Process_design_kit) is a set of files used within the semiconductor industry to model a fabrication process for the design tools used to design an integrated circuit. The PDK is created by the foundry defining a certain technology variation for their processes. It is then passed to their customers to use in the design process.<br>
 The [SkyWater Open Source PDK](https://github.com/google/skywater-pdk) is a collaboration between Google and SkyWater Technology Foundry to provide a fully open source Process Design Kit and related resources, which can be used to create manufacturable designs at SkyWater’s facility.<br>
 The SkyWater Open Source PDK documentation can be found at: [https://skywater-pdk.rtfd.io/](https://skywater-pdk.rtfd.io/) <br>
 The latest SkyWater SKY130 PDK design resources can be downloaded from the following repositories:
@@ -30,7 +31,7 @@ The latest SkyWater SKY130 PDK design resources can be downloaded from the follo
 2. [Google CodeSearch interface @ https://cs.opensource.google/skywater-pdk](https://cs.opensource.google/skywater-pdk)
 3. [foss-eda-tools.googlesource.com/skywater-pdk](https://foss-eda-tools.googlesource.com/skywater-pdk/)
 ## 1. Introduction
-Most of the recent day processors works on von-Neumann architecture<sup>[1](#references)</sup>. In von-Neumann architecture program and data units are spatially, separately stored at different locations on the chip, leads to significantly high delay and energy consumption due to frequent data transfer between physically separated memory and computing cores. This problem is further exacerbated for data intensive applications such as in AI/ML, DSP processors, etc. By enabling computations within memory, significant improvements, both in energy efficiency and throughput are expected<sup>[2](#references)</sup>. Digital to analog convertor (DAC) is a key block to these applications to interface analog signal with digital processors/algorithms. So, in this work, we will design an in-memory DAC inside 8T SRAM cell.
+ost of the recent day processors works on von-Neumann architecture <sup>[1](#references)</sup> where the program and data units are separately spatially, i.e., stored at different locations on the chip. This significantly increases delay and energy consumption due to frequent to and fro data transfer between these two cores, especially in case of data intensive applications such as in AI/ML. By facilitating computations within memory, both energy efficiency and throughput are expected to improve manifolds <sup>[2](#references)</sup>. AI/ML operations are often preferred in analog domain to avoid complexity but digital world offers many advantages over analog world, such as ease of storage, processing etc. So, in this work, we will present an in-memory DAC inside 8T SRAM cell for AI acceleration. 
 <br>[🠉 Back to Top](#contents)
 ## 2. 8T SRAM Cell For In-Memory DAC
 An 8T-SRAM, without modifying its basic circuit structure, can behave as a digital to analog converter (DAC), without affecting the bits stored in the SRAM cell. Consider an array of 4 cells connected as shown in Fig. 2. Under normal memory operations, the source terminal of M1 (and also M3, M5, M29) is grounded but for DAC operation SLs (source lines) of same row are all connected to _vin_. Thus, the current flowing through each column is proportional to their common _vin_, and also to the conductance of transistors in each of these columns respectively as shown in Fig. 2. e.g., when logic ‘1’ is stored in memory cell of first column, conductance of M1 is very high but when logic ‘0’ is stored in memory cell, the conductance of M1 is almost negligible, i.e., it does not conducts at all. Another parameter on which current will depend are (W/L) ratio of mosfet M1 and M2 present in first column. It is well known that current through enhancement mosfet is directly proportional to its (W/L) ratio. Hence, properly sizing the (W/L) ratios of mosfet M1 and M2 in each column we can obtained our proposed digital to analog converter.<br>
