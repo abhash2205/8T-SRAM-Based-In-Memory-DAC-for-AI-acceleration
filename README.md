@@ -57,7 +57,7 @@ $$G\prop(W/L)...(2)$$
 
 Hence, properly sizing the (W/L) ratios of mosfets in each column we can obtained our proposed DAC as discussed below.<br>
 Now consider that the ratio of (W/L) of mosfets used in column 1 through 4 is 8: 4: 2: 1 as shown in Fig. 3, i.e.,
-$$(W/L)_{SC1,SC2}=2^3\timesk, (W/L)_{SC3,SC4}=2^2\timesk, (W/L)_{SC5,SC6}=2^1\timesk, (W/L)_{SC7,SC8}=2^0\timesk...(3)$$
+$$\(W/L\)_{SC1,SC2}=2^3\timesk, (W/L)_{SC3,SC4}=2^2\timesk, (W/L)_{SC5,SC6}=2^1\timesk, (W/L)_{SC7,SC8}=2^0\timesk...(3)$$
 where $k$ is any constant. Hence, equation (1), (2), and (3); the total current $I$ can be given as:
 $$I\prop(2<sup>3</sup>b<sub>3</sub>+2<sup>2</sup>b<sub>2</sub>+2<sup>1</sup>b<sub>1</sub>+2<sup>0</sup>b<sub>0</sub>)=w$$
 where, ${w=(2<sup>3</sup>b<sub>3</sub>+2<sup>2</sup>b<sub>2</sub>+2<sup>1</sup>b<sub>1</sub>+2<sup>0</sup>b<sub>0</sub>)}$ is analog equivalent of digital weight ${\{b_3,b_2,b_1,b_0\}}$ stored in SRAM cell.
