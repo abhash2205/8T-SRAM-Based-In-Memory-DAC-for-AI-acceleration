@@ -212,9 +212,9 @@ Fig. 8 below demonstrates the expected output generated via [LTSpice](https://ww
 Fig. 9 below demonstrates the simulated output of eSim. Thus, the simulated results establishes the successful simulation of the in-memory SRAM based DAC.
 
 ![Fig2a](https://user-images.githubusercontent.com/100511409/193140889-4aaf0066-5b2f-4954-9aba-75aff7a6eace.png)<br>
-_Fig. 8. Simulated output on __LTSpice__ showing (a) digital 4-bit data ${b_3b_2b_1b_0}$ stored in SRAM cell, (b) output current (obtained from __LTSpice__) proportional to the analog equivalent of weight w stored within SRAM._<br><br>
+_Fig. 8. Simulated output on __LTSpice__ showing (a) digital 4-bit data_ ${b_3b_2b_1b_0}$ _stored in SRAM cell, (b) output current (obtained from __LTSpice__) proportional to the analog equivalent of weight w stored within SRAM._<br><br>
 ![Final_Simulated_Output](https://user-images.githubusercontent.com/100511409/193124309-ae743365-519b-4f69-84b4-23610a8c0350.png)<br>
-_Fig. 9. Simulated output on __eSim__ showing (a) digital 4-bit data ${b_3b_2b_1b_0}$ stored in SRAM cell, and (b) staircase output current which is typical to the digital to analog convertor (DAC)._<br>
+_Fig. 9. Simulated output on __eSim__ showing (a) digital 4-bit data_ ${b_3b_2b_1b_0}$ _stored in SRAM cell, and (b) staircase output current which is typical to the digital to analog convertor (DAC)._<br>
 <br>[🠉 Back to Top](#contents)
 
 ## Acknowledgement
