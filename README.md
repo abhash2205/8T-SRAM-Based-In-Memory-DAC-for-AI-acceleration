@@ -3,6 +3,7 @@
 [Abstract](#abstract)<br>
 [Keywords](#keywords)<br>
 [Tools Used](#tools-used)<br>
+[SKY 130nm Process Design Kit (PDK)](#Skywater-Open-Source-Process-Design-Kit-(PDK))
 1. [Introduction](#1-introduction)<br>
 2. [8T SRAM Cell For In-Memory DAC](#2-8t-sram-cell-for-in-memory-dac)<br>
 3. [Simulation Results](#3-simulation-results)<br>
@@ -11,16 +12,23 @@
 4. [Acknowledgement](#acknowledgement)<br>
 5. [References](#references)<br>
 ## Abstract
-The von-Neumann computing methodology dominates most of the today's processor architecture. In such architecture, program and data are decoupled from each other leading to massive latency as well as energy consumption due to frequent shuttling back and forth of data between physically separate memory and computing cores also known as bottleneck. Digital to analog convertor (DAC) is one of the frequently used block inside any processing core which needs to interface analog and digital world. In this paper, we will design an 8T SRAM based in-memory DAC convertor to overcome the von-Neumann bottleneck.
+The present-day dominant von-Neumann based computing architecture involves separate computing and storage units where the data has to be continuously shuttled back and forth between physically separate memory and computing cores leading to the well-known memory-wall problem especially for data intensive application such as artificial intelligence (AI). Digital-to-analog conversion (DAC) and analog-to-digital conversion (ADC) is one of the frequently used operations to carry out AI/ML based algorithms inside any processing core. In this paper, we have presented an 8T SRAM based in-memory DAC to overcome the von- Neumann bottleneck.
 <br>[🠉 Back to Top](#contents)
 ## Keywords
-bottleneck, DAC, SRAM, von-Neumann
+_Artificial Intelligence (AI), bottleneck, DAC, SRAM, von-Neumann_
 <br>[🠉 Back to Top](#contents)
 ## Tools Used
 [eSim](https://esim.fossee.in/home) (previously known as Oscad / FreeEDA) is a free/libre and open source EDA tool for circuit design, simulation, analysis and PCB design. It is an integrated tool built using free/libre and open source software such as [KiCad](http://www.kicad-pcb.org/), [Ngspice](http://ngspice.sourceforge.net/), [Verilator](https://www.veripool.org/verilator/), [makerchip-app](https://pypi.org/project/makerchip-app/), [sandpiper-saas](https://pypi.org/project/sandpiper-saas/) and [GHDL](http://ghdl.free.fr/). eSim is released under GPL.
 ![eSim](https://user-images.githubusercontent.com/100511409/157074547-e9c855cf-ddaa-41e1-a44f-8071950f172b.jpg)<br>
 _Fig. 1. FOSSEE eSim software._<br>
 <br>[🠉 Back to Top](#contents)
+## Skywater Open Source Process Design Kit (PDK)
+The [SkyWater Open Source PDK](https://github.com/google/skywater-pdk) is a collaboration between Google and SkyWater Technology Foundry to provide a fully open source Process Design Kit and related resources, which can be used to create manufacturable designs at SkyWater’s facility.<br>
+The SkyWater Open Source PDK documentation can be found at: [https://skywater-pdk.rtfd.io/](https://skywater-pdk.rtfd.io/) <br>
+The latest SkyWater SKY130 PDK design resources can be downloaded from the following repositories:
+1. [On Github @ google/skywater-pdk](https://github.com/google/skywater-pdk)
+2. [Google CodeSearch interface @ https://cs.opensource.google/skywater-pdk](https://cs.opensource.google/skywater-pdk)
+3. [foss-eda-tools.googlesource.com/skywater-pdk](https://foss-eda-tools.googlesource.com/skywater-pdk/)
 ## 1. Introduction
 Most of the recent day processors works on von-Neumann architecture<sup>[1](#references)</sup>. In von-Neumann architecture program and data units are spatially, separately stored at different locations on the chip, leads to significantly high delay and energy consumption due to frequent data transfer between physically separated memory and computing cores. This problem is further exacerbated for data intensive applications such as in AI/ML, DSP processors, etc. By enabling computations within memory, significant improvements, both in energy efficiency and throughput are expected<sup>[2](#references)</sup>. Digital to analog convertor (DAC) is a key block to these applications to interface analog signal with digital processors/algorithms. So, in this work, we will design an in-memory DAC inside 8T SRAM cell.
 <br>[🠉 Back to Top](#contents)
