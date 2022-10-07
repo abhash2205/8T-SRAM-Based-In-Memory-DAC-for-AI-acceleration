@@ -4,9 +4,9 @@
 [Abstract](#abstract)<br>
 [Keywords](#keywords)<br>
 [Tools Used](#tools-used)<br>
-- i. [eSim](#i-esim)<br>
-- ii. [Makerchip](#ii-makerchip)<br>
-[Skywater Open Source Process Design Kit](#skywater-open-source-process-design-kit)
+i. [eSim](#i-esim)<br>
+ii. [Makerchip](#ii-makerchip)<br>
+[Skywater Open Source Process Design Kit](#skywater-open-source-process-design-kit)<br>
 1. [Introduction](#1-introduction)<br>
 2. [Proposed Circuit Design](#2-proposed-circuit-design)<br>
 3. [Simulation Results](#3-simulation-results)<br>
