@@ -1,0 +1,44 @@
+* /home/abhash2205/eSim-Workspace/InMemDAC/InMemDAC.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 29 Sep 2022 09:28:38 PM IST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+U4  Net-_U13-Pad1_ b3 Net-_U2-Pad2_ Net-_U2-Pad1_ adc_bridge_2		
+U3  Net-_U2-Pad3_ Net-_SC1-Pad2_ dac_bridge_1		
+v4  b3 GND pulse		
+SC2  Net-_SC2-Pad1_ Net-_SC2-Pad2_ Net-_SC1-Pad1_ GND sky130_fd_pr__nfet_01v8_lvt		
+SC1  Net-_SC1-Pad1_ Net-_SC1-Pad2_ Net-_SC1-Pad3_ GND sky130_fd_pr__nfet_01v8_lvt		
+v3  Net-_SC1-Pad3_ GND DC		
+v2  Net-_SC2-Pad2_ GND DC		
+U8  Net-_U13-Pad1_ b2 Net-_U6-Pad2_ Net-_U6-Pad1_ adc_bridge_2		
+U7  Net-_U6-Pad3_ Net-_SC3-Pad2_ dac_bridge_1		
+v5  b2 GND pulse		
+SC4  Net-_SC2-Pad1_ Net-_SC2-Pad2_ Net-_SC3-Pad1_ GND sky130_fd_pr__nfet_01v8_lvt		
+SC3  Net-_SC3-Pad1_ Net-_SC3-Pad2_ Net-_SC1-Pad3_ GND sky130_fd_pr__nfet_01v8_lvt		
+U13  Net-_U13-Pad1_ b1 Net-_U10-Pad2_ Net-_U10-Pad1_ adc_bridge_2		
+U11  Net-_U10-Pad3_ Net-_SC5-Pad2_ dac_bridge_1		
+v6  b1 GND pulse		
+SC6  Net-_SC2-Pad1_ Net-_SC2-Pad2_ Net-_SC5-Pad1_ GND sky130_fd_pr__nfet_01v8_lvt		
+SC5  Net-_SC5-Pad1_ Net-_SC5-Pad2_ Net-_SC1-Pad3_ GND sky130_fd_pr__nfet_01v8_lvt		
+U16  Net-_U13-Pad1_ b0 Net-_U16-Pad3_ Net-_U16-Pad4_ adc_bridge_2		
+U15  Net-_U15-Pad1_ Net-_SC7-Pad2_ dac_bridge_1		
+v7  b0 GND pulse		
+SC8  Net-_SC2-Pad1_ Net-_SC2-Pad2_ Net-_SC7-Pad1_ GND sky130_fd_pr__nfet_01v8_lvt		
+SC7  Net-_SC7-Pad1_ Net-_SC7-Pad2_ Net-_SC1-Pad3_ GND sky130_fd_pr__nfet_01v8_lvt		
+v1  Net-_U13-Pad1_ GND DC		
+U5  b3 plot_v1		
+U9  b2 plot_v1		
+U14  b1 plot_v1		
+U17  b0 plot_v1		
+U12  Net-_SC2-Pad1_ GND plot_i2		
+U1  ? ? ? abhash_6tsram		
+U18  Net-_U16-Pad4_ Net-_U16-Pad3_ Net-_U15-Pad1_ abhash_6tsram		
+U10  Net-_U10-Pad1_ Net-_U10-Pad2_ Net-_U10-Pad3_ abhash_6tsram		
+U6  Net-_U6-Pad1_ Net-_U6-Pad2_ Net-_U6-Pad3_ abhash_6tsram		
+U2  Net-_U2-Pad1_ Net-_U2-Pad2_ Net-_U2-Pad3_ abhash_6tsram		
+scmode1  SKY130mode		
+
+.end
