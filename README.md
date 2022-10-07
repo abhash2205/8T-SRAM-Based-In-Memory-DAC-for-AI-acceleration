@@ -12,8 +12,8 @@
 3. [Simulation Results](#3-simulation-results)<br>
    - 3.1. [Netlist](#31-netlist)<br>
    - 3.2. [Simulated Waveforms](#32-simulated-waveforms)<br>
-4. [Acknowledgement](#acknowledgement)<br>
-5. [References](#references)<br>
+- [Acknowledgement](#acknowledgement)<br>
+- [References](#references)<br>
 
 
 ## Abstract
