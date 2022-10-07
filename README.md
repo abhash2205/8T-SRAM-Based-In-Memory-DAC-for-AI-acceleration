@@ -49,7 +49,7 @@ ost of the recent day processors works on von-Neumann architecture <sup>[1](#ref
 <br>[🠉 Back to Top](#contents)
 
 ## 2. Proposed Circuit Design
-An 8T-SRAM, without modifying its basic circuit structure, can behave as a digital to analog converter (DAC), without affecting the bits stored in the SRAM cell. Consider an array of 4 cells connected as shown in Fig. 3. Under normal memory operations, the source terminal of SC1 (and also SC3, SC5, SC7) is grounded but for DAC operation SLs (source lines) of same row are all connected to _vin_. Thus, the current flowing through each column is proportional to their common _vin_, and also to the conductance of transistors in each of these columns respectively <sup>[3](#references)</sup>, i.e.,
+An 8T-SRAM, without modifying its basic circuit structure, can behave as a digital to analog converter (DAC), without affecting the bits stored in the SRAM cell. Consider an array of 4 cells connected as shown in Fig. 3. Under normal memory operations, the source terminal of SC1 (and also SC3, SC5, SC7) is grounded but for DAC operation SLs (source lines) of same row are all connected to _vin_ (voltage source V3 in Fig. 3). Thus, the current flowing through each column is proportional to their common _vin_, and also to the conductance of transistors in each of these columns respectively <sup>[3](#references)</sup>, i.e.,
 
 $$I ∝ G...(1)$$
 
