@@ -7,13 +7,13 @@
 i. [eSim](#i-esim)<br>
 ii. [Makerchip](#ii-makerchip)<br>
 [Skywater Open Source Process Design Kit](#skywater-open-source-process-design-kit)<br>
-1. [Introduction](#1-introduction)<br>
-2. [Proposed Circuit Design](#2-proposed-circuit-design)<br>
-3. [Simulation Results](#3-simulation-results)<br>
-   - 3.1. [Netlist](#31-netlist)<br>
-   - 3.2. [Simulated Waveforms](#32-simulated-waveforms)<br>
-4. [Acknowledgement](#acknowledgement)<br>
-5. [References](#references)<br>
+1.[Introduction](#1-introduction)<br>
+2.[Proposed Circuit Design](#2-proposed-circuit-design)<br>
+3.[Simulation Results](#3-simulation-results)<br>
+  - 3.1. [Netlist](#31-netlist)<br>
+  - 3.2. [Simulated Waveforms](#32-simulated-waveforms)<br>
+4.[Acknowledgement](#acknowledgement)<br>
+5.[References](#references)<br>
 
 
 ## Abstract
