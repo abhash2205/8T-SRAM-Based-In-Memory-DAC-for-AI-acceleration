@@ -1,17 +1,17 @@
 # 8T SRAM Based In Memory DAC for AI acceleration
 
 ## Contents
-[Abstract](#abstract)<br>
-[Keywords](#keywords)<br>
+[Abstract](#abstract)<br><br>
+[Keywords](#keywords)<br><br>
 [Tools Used](#tools-used)<br>
 i. [eSim](#i-esim)<br>
-ii. [Makerchip](#ii-makerchip)<br>
-[Skywater Open Source Process Design Kit](#skywater-open-source-process-design-kit)<br>
-1.[Introduction](#1-introduction)<br>
-2.[Proposed Circuit Design](#2-proposed-circuit-design)<br>
+ii. [Makerchip](#ii-makerchip)<br><br>
+[Skywater Open Source Process Design Kit](#skywater-open-source-process-design-kit)<br><br>
+1.[Introduction](#1-introduction)<br><br>
+2.[Proposed Circuit Design](#2-proposed-circuit-design)<br><br>
 3.[Simulation Results](#3-simulation-results)<br>
   - 3.1. [Netlist](#31-netlist)<br>
-  - 3.2. [Simulated Waveforms](#32-simulated-waveforms)<br>
+  - 3.2. [Simulated Waveforms](#32-simulated-waveforms)<br><br>
 4.[Acknowledgement](#acknowledgement)<br>
 5.[References](#references)<br>
 
