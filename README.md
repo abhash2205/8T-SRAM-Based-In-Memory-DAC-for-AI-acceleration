@@ -4,8 +4,8 @@
 [Abstract](#abstract)<br>
 [Keywords](#keywords)<br>
 [Tools Used](#tools-used)<br>
-A. [eSim](#a-esim)<br>
-B. [Makerchip](#b-makerchip)<br>
+- i. [eSim](#i-esim)<br>
+- ii. [Makerchip](#ii-makerchip)<br>
 [Skywater Open Source Process Design Kit](#skywater-open-source-process-design-kit)
 1. [Introduction](#1-introduction)<br>
 2. [Proposed Circuit Design](#2-proposed-circuit-design)<br>
@@ -25,12 +25,12 @@ _Artificial Intelligence (AI), bottleneck, DAC, SRAM, von-Neumann_
 <br>[🠉 Back to Top](#contents)
 
 ## Tools Used
-### A. eSim 
+### i. eSim 
 [eSim](https://esim.fossee.in/home) (previously known as Oscad / FreeEDA) is a free/libre and open source EDA tool for circuit design, simulation, analysis and PCB design. It is an integrated tool built using free/libre and open source software such as [KiCad](http://www.kicad-pcb.org/), [Ngspice](http://ngspice.sourceforge.net/), [Verilator](https://www.veripool.org/verilator/), [makerchip-app](https://pypi.org/project/makerchip-app/), [sandpiper-saas](https://pypi.org/project/sandpiper-saas/) and [GHDL](http://ghdl.free.fr/). eSim is released under GPL.
 ![eSim](https://user-images.githubusercontent.com/100511409/157074547-e9c855cf-ddaa-41e1-a44f-8071950f172b.jpg)<br>
 _Fig. 1. FOSSEE eSim software. (Source:[https://esim.fossee.in/home](https://esim.fossee.in/home))_<br>
 
-### B. Makerchip
+### ii. Makerchip
 [Makerchip](https://makerchip.com/) is tool designed by [Redwood EDA](https://www.redwoodeda.com/) for Open-source SystemVerilog/TL-Verilog development in your browser. Makerchip provides free and instant access to the latest tools directly from your browser and from your desktop. This includes open-source tools and proprietary ones. 
 ![Makerchip_Software](https://user-images.githubusercontent.com/100511409/193117567-784976ba-b100-4ad1-ad1f-3ad6f701bf04.png)<br>
 _Fig. 2. Makerchip software for design verification. (Source: [https://makerchip.com/](https://makerchip.com/))_<br>
