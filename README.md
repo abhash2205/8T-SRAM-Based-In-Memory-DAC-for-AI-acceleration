@@ -1,4 +1,4 @@
-# SRAM Based In Memory DAC for AI acceleration
+# 8T SRAM Based In Memory DAC for AI acceleration
 
 ## Contents
 [Abstract](#abstract)<br>
